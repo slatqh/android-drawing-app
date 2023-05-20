@@ -150,5 +150,29 @@
             android:contentDescription="image"
             android:scaleType="fitXY"
             android:src="@drawable/brush_icon" />
+        <ImageButton
+            android:id="@+id/ib_revert"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:contentDescription="image"
+            android:scaleType="fitXY"
+            android:src="@drawable/revert_btn" />
+        <ImageButton
+            android:id="@+id/ib_redu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:contentDescription="image"
+            android:scaleType="fitXY"
+            android:src="@drawable/redu_icon" />
+        <ImageButton
+            android:id="@+id/ib_save"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:contentDescription="image"
+            android:scaleType="fitXY"
+            android:src="@drawable/save_icon_125167" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

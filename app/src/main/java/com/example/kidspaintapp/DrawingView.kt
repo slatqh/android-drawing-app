@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
@@ -20,12 +21,28 @@ class DrawingView(context:Context, attrs: AttributeSet) :View(context, attrs){
     private var color = Color.BLACK
     private var canvas: Canvas? = null
     private val mPath = ArrayList<CustomPath>()
+    private val mUndoPath = ArrayList<CustomPath>()
+    private val mRedoPath = ArrayList<CustomPath>()
 
 
     init{
         setupDrawing()
     }
 
+    fun onClickUndo(){
+        if(mPath.size > 0){
+            mUndoPath.add(mPath.removeAt(mPath.size -1))
+            invalidate()
+        }
+    }
+
+    fun onClickRedo(){
+        if(mPath.size > 0 ){
+            mPath.add(mUndoPath[mUndoPath.lastIndex])
+            invalidate()
+
+        }
+    }
     private fun setupDrawing(){
         mDrawPaint = Paint()
         mDrawPath = CustomPath(color, mBrushSize)
@@ -50,8 +67,8 @@ class DrawingView(context:Context, attrs: AttributeSet) :View(context, attrs){
             canvas.drawBitmap(it, 0f, 0f, mCanvasPaint)
         }
         for(path in mPath){
-            mDrawPaint!!.strokeWidth = path!!.brushThickness
-            mDrawPaint!!.color = mDrawPath!!.color
+            mDrawPaint!!.strokeWidth = path.brushThickness
+            mDrawPaint!!.color = path.color
             canvas.drawPath(path, mDrawPaint!!)
         }
         if(!mDrawPath!!.isEmpty ){
